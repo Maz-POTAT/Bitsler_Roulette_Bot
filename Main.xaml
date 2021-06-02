@@ -78,7 +78,6 @@
       <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
       <AssemblyReference>UiPath.CV</AssemblyReference>
       <AssemblyReference>System.Windows.Presentation</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="Bot" sap:VirtualizedContainerService.HintSize="509,1436" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -179,7 +178,7 @@
                         <av:Size x:Key="ShapeSize">200,51</av:Size>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Flowchart DisplayName="Put Coins" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="Flowchart_6">
+                    <Flowchart DisplayName="Put Coins" sap:VirtualizedContainerService.HintSize="644,636" sap2010:WorkflowViewState.IdRef="Flowchart_6">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -307,7 +306,7 @@
                                                 <av:Size x:Key="ShapeSize">200,51</av:Size>
                                               </scg:Dictionary>
                                             </sap:WorkflowViewStateService.ViewState>
-                                            <ui:InvokeCode ContinueOnError="{x:Null}" Code="bUp = bBetUp&#xA;bWining = bWin&#xA;" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="334,164" sap2010:WorkflowViewState.IdRef="InvokeCode_9">
+                                            <ui:InvokeCode ContinueOnError="{x:Null}" Code="bUp = bBetUp&#xA;bWining = bWin&#xA;" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="InvokeCode_9">
                                               <ui:InvokeCode.Arguments>
                                                 <InOutArgument x:TypeArguments="x:Boolean" x:Key="bUp">[bUp]</InOutArgument>
                                                 <InArgument x:TypeArguments="x:Boolean" x:Key="bBetUp">[bBetUp]</InArgument>
@@ -379,7 +378,7 @@
                                         <av:PointCollection x:Key="ConnectorLocation">500,395.5 500,425.5 370,425.5 370,365.5 300,365.5 300,386.5</av:PointCollection>
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
-                                    <ui:InvokeCode ContinueOnError="{x:Null}" Code="rCurBet = rStartUp" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="InvokeCode_12">
+                                    <ui:InvokeCode ContinueOnError="{x:Null}" Code="rCurBet = rStartUp" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="334,164" sap2010:WorkflowViewState.IdRef="InvokeCode_12">
                                       <ui:InvokeCode.Arguments>
                                         <InArgument x:TypeArguments="x:Double" x:Key="rStartUp">[rStartUp]</InArgument>
                                         <InOutArgument x:TypeArguments="x:Double" x:Key="rCurBet">[rCurBet]</InOutArgument>
@@ -441,7 +440,7 @@
                             <av:PointCollection x:Key="ConnectorLocation">300,525.5 300,555.5 300.141666666667,555.5 300.141666666667,556.5</av:PointCollection>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="if (strResultColor == &quot;red&quot;)&#xA;&#x9;bWin = false;&#xA;else&#xA;&#x9;bWin = true;&#xA;&#xA;if(bWin == false)&#xA;{&#xA;&#x9;bBetUp = !bBetUp;&#xA;&#x9;rCur = rCur - rCurBet;&#xA;}&#xA;else&#xA;{&#xA;&#x9;&#x9;bBetUp = true;&#xA;&#x9;&#x9;rCur = rCur + rCurBet;&#xA;}" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="InvokeCode_1" Language="CSharp">
+                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="if (strResultColor == &quot;red&quot;)&#xD;&#xA;&#x9;bWin = false;&#xD;&#xA;else&#xD;&#xA;&#x9;bWin = true;&#xD;&#xA;&#xD;&#xA;if(bWin == false)&#xD;&#xA;{&#xD;&#xA;&#x9;bBetUp = !bBetUp;&#xD;&#xA;&#x9;rCur = rCur - rCurBet;&#xD;&#xA;}&#xD;&#xA;else&#xD;&#xA;{&#xD;&#xA;&#x9;&#x9;rCur = rCur + rCurBet;&#xD;&#xA;}" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="334,164" sap2010:WorkflowViewState.IdRef="InvokeCode_1" Language="CSharp">
                           <ui:InvokeCode.Arguments>
                             <InArgument x:TypeArguments="x:String" x:Key="strResultColor">[strResultColor]</InArgument>
                             <InOutArgument x:TypeArguments="x:Boolean" x:Key="bWin">[bWin]</InOutArgument>
@@ -457,10 +456,7 @@
                           </sap:WorkflowViewStateService.ViewState>
                         </ui:InvokeCode>
                         <FlowStep.Next>
-                          <FlowDecision x:Name="__ReferenceID16" DisplayName="Flow Decision" sap:VirtualizedContainerService.HintSize="79,87" sap2010:WorkflowViewState.IdRef="FlowDecision_10">
-                            <FlowDecision.Condition>
-                              <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="rCur &gt;= rWinStop" />
-                            </FlowDecision.Condition>
+                          <FlowDecision x:Name="__ReferenceID16" Condition="[rCur &gt;= rWinStop]" DisplayName="Flow Decision" sap:VirtualizedContainerService.HintSize="79,87" sap2010:WorkflowViewState.IdRef="FlowDecision_10">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -506,10 +502,7 @@
                               </FlowStep>
                             </FlowDecision.True>
                             <FlowDecision.False>
-                              <FlowDecision x:Name="__ReferenceID18" DisplayName="Flow Decision" sap:VirtualizedContainerService.HintSize="79,87" sap2010:WorkflowViewState.IdRef="FlowDecision_11">
-                                <FlowDecision.Condition>
-                                  <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="rCur &lt;= rLoseStop" />
-                                </FlowDecision.Condition>
+                              <FlowDecision x:Name="__ReferenceID18" Condition="[rCur &lt;= rLoseStop]" DisplayName="Flow Decision" sap:VirtualizedContainerService.HintSize="79,87" sap2010:WorkflowViewState.IdRef="FlowDecision_11">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
