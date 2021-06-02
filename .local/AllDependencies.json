@@ -5024,9 +5024,9 @@
     "restore": {
       "projectUniqueName": "BitslerBot",
       "projectName": "BitslerBot",
-      "projectPath": "E:\\Karl_UiPath\\BitslerBot\\.local",
+      "projectPath": "E:\\Karl_UiPath\\Bitsler_Roulette_Bot\\.local",
       "packagesPath": "C:\\Users\\so\\.nuget\\packages\\",
-      "outputPath": "E:\\Karl_UiPath\\BitslerBot\\.local"
+      "outputPath": "E:\\Karl_UiPath\\Bitsler_Roulette_Bot\\.local"
     },
     "frameworks": {
       "net461": {

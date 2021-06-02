@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AanTfz3KEC51c6Hw8rCgr4sxmISAVb4JucXzEla6Y+6aANsLIDfSKpHtC+8AkK54WQif44JDPik91F5aW0wkEg==",
+  "dgSpecHash": "YS+uqAftzwIaAtD5mGiGw6QCyC4SLjH8s3qOpvaRWmHXjevr0+Pp7mG+tZ0C69OriDmBxAaqhFz7Pe3WK00eww==",
   "success": true,
-  "projectFilePath": "E:\\Karl_UiPath\\BitslerBot\\.local\\",
+  "projectFilePath": "E:\\Karl_UiPath\\Bitsler_Roulette_Bot\\.local\\",
   "expectedPackageFiles": [
     "C:\\Users\\so\\.nuget\\packages\\closedxml\\0.87.1\\closedxml.0.87.1.nupkg.sha512",
     "C:\\Users\\so\\.nuget\\packages\\csvhelper\\16.0.0\\csvhelper.16.0.0.nupkg.sha512",
