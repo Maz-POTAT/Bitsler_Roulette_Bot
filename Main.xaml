@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="562,1501" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="929,1501" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -78,7 +78,6 @@
       <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
       <AssemblyReference>UiPath.CV</AssemblyReference>
       <AssemblyReference>System.Windows.Presentation</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="Bot" sap:VirtualizedContainerService.HintSize="509,1436" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -441,14 +440,29 @@
                             <av:PointCollection x:Key="ConnectorLocation">300,525.5 300,555.5 300.141666666667,555.5 300.141666666667,556.5</av:PointCollection>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="if (strResultColor == &quot;red&quot;)&#xA;&#x9;bWin = false;&#xA;else&#xA;&#x9;bWin = true;&#xA;&#xA;if(bWin == false)&#xA;{&#xA;&#x9;bBetUp = !bBetUp;&#xA;&#x9;rCur = rCur - rCurBet;&#xA;}&#xA;else&#xA;{&#xA;&#x9;&#x9;rCur = rCur + rCurBet;&#xA;}" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="InvokeCode_1" Language="CSharp">
+                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="if (strResultColor == &quot;red&quot;)&#xD;&#xA;&#x9;bWin = false;&#xD;&#xA;else&#xD;&#xA;&#x9;bWin = true;&#xD;&#xA;&#xD;&#xA;if(bWin == false)&#xD;&#xA;{&#xD;&#xA;&#x9;bBetUp = !bBetUp;&#xD;&#xA;&#x9;rCur = rCur - rCurBet;&#xD;&#xA;&#x9;if(bWin == false &amp;&amp; (rCurBet &gt; rStartUp*(2^5)))&#xD;&#xA;&#x9;&#x9;bWin = true;&#xD;&#xA;}&#xD;&#xA;else&#xD;&#xA;{&#xD;&#xA;&#x9;&#x9;rCur = rCur + rCurBet;&#xD;&#xA;}" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="334,164" sap2010:WorkflowViewState.IdRef="InvokeCode_1" Language="CSharp">
                           <ui:InvokeCode.Arguments>
-                            <InArgument x:TypeArguments="x:String" x:Key="strResultColor">[strResultColor]</InArgument>
-                            <InOutArgument x:TypeArguments="x:Boolean" x:Key="bWin">[bWin]</InOutArgument>
-                            <InArgument x:TypeArguments="x:Boolean" x:Key="bWining">[bWining]</InArgument>
-                            <InOutArgument x:TypeArguments="x:Boolean" x:Key="bBetUp">[bBetUp]</InOutArgument>
-                            <InArgument x:TypeArguments="x:Double" x:Key="rCurBet">[rCurBet]</InArgument>
-                            <InOutArgument x:TypeArguments="x:Double" x:Key="rCur">[rCur]</InOutArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="strResultColor">
+                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strResultColor" />
+                            </InArgument>
+                            <InOutArgument x:TypeArguments="x:Boolean" x:Key="bWin">
+                              <mva:VisualBasicReference x:TypeArguments="x:Boolean" ExpressionText="bWin" />
+                            </InOutArgument>
+                            <InArgument x:TypeArguments="x:Boolean" x:Key="bWining">
+                              <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="bWining" />
+                            </InArgument>
+                            <InOutArgument x:TypeArguments="x:Boolean" x:Key="bBetUp">
+                              <mva:VisualBasicReference x:TypeArguments="x:Boolean" ExpressionText="bBetUp" />
+                            </InOutArgument>
+                            <InArgument x:TypeArguments="x:Double" x:Key="rCurBet">
+                              <mva:VisualBasicValue x:TypeArguments="x:Double" ExpressionText="rCurBet" />
+                            </InArgument>
+                            <InOutArgument x:TypeArguments="x:Double" x:Key="rCur">
+                              <mva:VisualBasicReference x:TypeArguments="x:Double" ExpressionText="rCur" />
+                            </InOutArgument>
+                            <InArgument x:TypeArguments="x:Double" x:Key="rStartUp">
+                              <mva:VisualBasicValue x:TypeArguments="x:Double" ExpressionText="rStartUp" />
+                            </InArgument>
                           </ui:InvokeCode.Arguments>
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -505,7 +519,7 @@
                             <FlowDecision.False>
                               <FlowDecision x:Name="__ReferenceID18" DisplayName="Flow Decision" sap:VirtualizedContainerService.HintSize="79,87" sap2010:WorkflowViewState.IdRef="FlowDecision_11">
                                 <FlowDecision.Condition>
-                                  <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="bWin = False And rCurBet &gt;= rLoseStop" />
+                                  <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="rCur &lt;= rLoseStop" />
                                 </FlowDecision.Condition>
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
