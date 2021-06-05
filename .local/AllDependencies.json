@@ -5024,9 +5024,9 @@
     "restore": {
       "projectUniqueName": "BitslerBot",
       "projectName": "BitslerBot",
-      "projectPath": "E:\\Karl_UiPath\\Bitsler_Roulette_Bot\\.local",
+      "projectPath": "E:\\Karl_UiPath\\Bitsler_Roulette_Dozen_Bot\\.local",
       "packagesPath": "C:\\Users\\so\\.nuget\\packages\\",
-      "outputPath": "E:\\Karl_UiPath\\Bitsler_Roulette_Bot\\.local"
+      "outputPath": "E:\\Karl_UiPath\\Bitsler_Roulette_Dozen_Bot\\.local"
     },
     "frameworks": {
       "net461": {
@@ -5052,7 +5052,7 @@
             "version": "[21.4.3, 21.4.3]"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Users\\so\\AppData\\Local\\UiPath\\app-21.4.3\\runtime.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\so\\AppData\\Local\\UiPath\\app-21.4.4\\runtime.json"
       }
     }
   }
