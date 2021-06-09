@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="694,2057" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="694,2891" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -78,22 +78,21 @@
       <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
       <AssemblyReference>UiPath.CV</AssemblyReference>
       <AssemblyReference>System.Windows.Presentation</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Bot" sap:VirtualizedContainerService.HintSize="509,1992" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Bot" sap:VirtualizedContainerService.HintSize="509,2826" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:OpenBrowser CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="467,1900" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" Url="https://www.bitsler.com/en/dice">
+    <ui:OpenBrowser CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="467,2734" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" Url="https://www.bitsler.com/en/dice">
       <ui:OpenBrowser.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,2077" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,2633" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Default="0.01" Name="strBetAmount1" />
               <Variable x:TypeArguments="x:Double" Default="2" Name="rQuitAmount" />
@@ -107,11 +106,10 @@
               <Variable x:TypeArguments="x:String" Default="0.01" Name="strBetAmount" />
               <Variable x:TypeArguments="x:Double" Default="0.01" Name="rBetAmount" />
               <Variable x:TypeArguments="x:Int32" Default="100" Name="nRelaxRemain" />
-              <Variable x:TypeArguments="x:Int32" Name="nLoseReset">
-                <Variable.Default>
-                  <Literal x:TypeArguments="x:Int32" Value="5" />
-                </Variable.Default>
-              </Variable>
+              <Variable x:TypeArguments="x:Int32" Default="5" Name="nLoseReset" />
+              <Variable x:TypeArguments="x:Int32" Default="10" Name="nInspectCount" />
+              <Variable x:TypeArguments="x:Int32" Default="4" Name="nGiveUpDoubleCount" />
+              <Variable x:TypeArguments="scg:List(x:Boolean)" Default="[new List(of Boolean)({})]" Name="listWinLog" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -150,7 +148,17 @@
                 <OutArgument x:TypeArguments="x:Int32">[nLoseReset]</OutArgument>
               </ui:InputDialog.Result>
             </ui:InputDialog>
-            <ui:InvokeCode ContinueOnError="{x:Null}" Code="strBetAmount1 = CStr(rBetAmount1)&#xA;strBetAmount2 = CStr(rBetAmount2)&#xA;strBetAmount = strBetAmount1&#xA;rBetAmount = rBetAmount1&#xA;rCurBet = rBetAmount1&#xA;" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="334,164" sap2010:WorkflowViewState.IdRef="InvokeCode_10">
+            <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="334,238" sap2010:WorkflowViewState.IdRef="InputDialog_8" IsPassword="False" Label="Inspect Count" Title="Inspect Count">
+              <ui:InputDialog.Result>
+                <OutArgument x:TypeArguments="x:Int32">[nInspectCount]</OutArgument>
+              </ui:InputDialog.Result>
+            </ui:InputDialog>
+            <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="334,238" sap2010:WorkflowViewState.IdRef="InputDialog_9" IsPassword="False" Label="GiveUpDoubleCount" Title="GiveUpDoubleCount">
+              <ui:InputDialog.Result>
+                <OutArgument x:TypeArguments="x:Int32">[nGiveUpDoubleCount]</OutArgument>
+              </ui:InputDialog.Result>
+            </ui:InputDialog>
+            <ui:InvokeCode ContinueOnError="{x:Null}" Code="strBetAmount1 = CStr(rBetAmount1)&#xA;strBetAmount2 = CStr(rBetAmount2)&#xA;strBetAmount = strBetAmount2&#xA;rBetAmount = rBetAmount2&#xA;rCurBet = rBetAmount2&#xA;nRelaxRemain = nRelaxCount&#xA;" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="334,164" sap2010:WorkflowViewState.IdRef="InvokeCode_10">
               <ui:InvokeCode.Arguments>
                 <InOutArgument x:TypeArguments="x:Double" x:Key="rBetAmount1">[rBetAmount1]</InOutArgument>
                 <InOutArgument x:TypeArguments="x:Double" x:Key="rCurBet">[rCurBet]</InOutArgument>
@@ -159,6 +167,8 @@
                 <InOutArgument x:TypeArguments="x:String" x:Key="strBetAmount2">[strBetAmount2]</InOutArgument>
                 <InOutArgument x:TypeArguments="x:String" x:Key="strBetAmount">[strBetAmount]</InOutArgument>
                 <InOutArgument x:TypeArguments="x:Double" x:Key="rBetAmount">[rBetAmount]</InOutArgument>
+                <InArgument x:TypeArguments="x:Int32" x:Key="nRelaxCount">[nRelaxCount]</InArgument>
+                <InOutArgument x:TypeArguments="x:Int32" x:Key="nRelaxRemain">[nRelaxRemain]</InOutArgument>
               </ui:InvokeCode.Arguments>
             </ui:InvokeCode>
             <Flowchart DisplayName="Bet on Bitsler" sap:VirtualizedContainerService.HintSize="734,986" sap2010:WorkflowViewState.IdRef="Flowchart_1">
@@ -209,7 +219,7 @@
                         <av:Size x:Key="ShapeSize">200,51</av:Size>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Flowchart DisplayName="Put Coins" sap:VirtualizedContainerService.HintSize="644,636" sap2010:WorkflowViewState.IdRef="Flowchart_6">
+                    <Flowchart DisplayName="Put Coins" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="Flowchart_6">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -472,59 +482,28 @@
                             <av:PointCollection x:Key="ConnectorLocation">300,525.5 300,546.5</av:PointCollection>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="if (strResultColor == &quot;red&quot;)&#xD;&#xA;&#x9;bWin = false;&#xD;&#xA;else&#xD;&#xA;&#x9;bWin = true;&#xD;&#xA;&#xD;&#xA;if(strBetAmount == strBetAmount1){&#xD;&#xA;&#x9;if(bWin == false)&#xD;&#xA;&#x9;{&#xD;&#xA;&#x9;&#x9;bBetUp = !bBetUp;&#xD;&#xA;&#x9;&#x9;rCur = rCur - rCurBet;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;else&#xD;&#xA;&#x9;{&#xD;&#xA;&#x9;&#x9;rCur = rCur + rCurBet;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;if(rCur &gt;= rConvertAmount || (bWin == false &amp;&amp; rCurBet &gt;= (rBetAmount*Math.Pow(2, nLoseReset-1)))){&#xD;&#xA;&#x9;&#x9;rQuitAmount -= rCur;&#xD;&#xA;&#x9;&#x9;rCur = 0;&#xD;&#xA;&#x9;&#x9;strBetAmount = strBetAmount2;&#xD;&#xA;&#x9;&#x9;rBetAmount = rBetAmount2;&#xD;&#xA;&#x9;&#x9;nRelaxRemain = nRelaxCount;&#xD;&#xA;&#x9;&#x9;bWining = false;&#xD;&#xA;&#x9;&#x9;bWin = true;&#xD;&#xA;&#x9;&#x9;bBetUp = true;&#xD;&#xA;&#x9;}&#xD;&#xA;} else {&#xD;&#xA;&#x9;nRelaxRemain --;&#xD;&#xA;&#x9;if(bWin == false){&#xD;&#xA;&#x9;&#x9;rCur = rCur-rCurBet;&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;rCur = rCur+rCurBet;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;bBetUp = true;&#xD;&#xA;&#x9;bWin = true;&#xD;&#xA;&#x9;if(nRelaxRemain&lt;=0){&#xD;&#xA;&#x9;&#x9;strBetAmount = strBetAmount1;&#xD;&#xA;&#x9;&#x9;rBetAmount = rBetAmount1;&#xD;&#xA;&#x9;&#x9;rQuitAmount -= rCur;&#xD;&#xA;&#x9;&#x9;rCur = 0;&#xD;&#xA;&#x9;&#x9;bWining = false;&#xD;&#xA;&#x9;}&#xD;&#xA;}" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="334,164" sap2010:WorkflowViewState.IdRef="InvokeCode_1" Language="CSharp">
+                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="if (strResultColor == &quot;red&quot;)&#xD;&#xA;&#x9;bWin = false;&#xD;&#xA;else&#xD;&#xA;&#x9;bWin = true;&#xD;&#xA;listWinLog.Insert(0, bWin);&#xD;&#xA;if(strBetAmount == strBetAmount1){&#xD;&#xA;&#x9;if(bWin == false)&#xD;&#xA;&#x9;{&#xD;&#xA;&#x9;&#x9;bBetUp = !bBetUp;&#xD;&#xA;&#x9;&#x9;rCur = rCur - rCurBet;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;else&#xD;&#xA;&#x9;{&#xD;&#xA;&#x9;&#x9;rCur = rCur + rCurBet;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;if(rCur &gt;= rConvertAmount || (bWin == false &amp;&amp; rCurBet &gt;= (rBetAmount*Math.Pow(2, nLoseReset-1)))){&#xD;&#xA;&#x9;&#x9;rQuitAmount -= rCur;&#xD;&#xA;&#x9;&#x9;rCur = 0;&#xD;&#xA;&#x9;&#x9;strBetAmount = strBetAmount2;&#xD;&#xA;&#x9;&#x9;rBetAmount = rBetAmount2;&#xD;&#xA;&#x9;&#x9;nRelaxRemain = nRelaxCount;&#xD;&#xA;&#x9;&#x9;bWining = false;&#xD;&#xA;&#x9;&#x9;bWin = true;&#xD;&#xA;&#x9;&#x9;bBetUp = true;&#xD;&#xA;&#x9;}&#xD;&#xA;} else {&#xD;&#xA;&#x9;nRelaxRemain --;&#xD;&#xA;&#x9;if(bWin == false){&#xD;&#xA;&#x9;&#x9;rCur = rCur-rCurBet;&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;rCur = rCur+rCurBet;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;bBetUp = true;&#xD;&#xA;&#x9;bWin = true;&#xD;&#xA;&#x9;if(nRelaxRemain&lt;=0){&#xD;&#xA;&#x9;&#x9;if(listWinLog.Count() &gt;= nInspectCount){&#xD;&#xA;&#x9;&#x9;&#x9;bool bBet = true;&#xD;&#xA;&#x9;&#x9;&#x9;bool bPrev = listWinLog[0];&#xD;&#xA;&#x9;&#x9;&#x9;int nConsecutive = 1;&#xD;&#xA;&#x9;&#x9;&#x9;for(int j=1; j&lt;nInspectCount; j++){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(listWinLog[j] == bPrev){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;nConsecutive++;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(nConsecutive &gt; nGiveUpDoubleCount){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;bBet = false;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;break;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;else&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;bPrev = listWinLog[j];&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;nConsecutive = 1;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;if(bBet == true){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;strBetAmount = strBetAmount1;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;rBetAmount = rBetAmount1;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;rQuitAmount -= rCur;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;rCur = 0;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;bWining = false;&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;}" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="334,164" sap2010:WorkflowViewState.IdRef="InvokeCode_1" Language="CSharp">
                           <ui:InvokeCode.Arguments>
-                            <InArgument x:TypeArguments="x:String" x:Key="strResultColor">
-                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strResultColor" />
-                            </InArgument>
-                            <InOutArgument x:TypeArguments="x:Boolean" x:Key="bWin">
-                              <mva:VisualBasicReference x:TypeArguments="x:Boolean" ExpressionText="bWin" />
-                            </InOutArgument>
-                            <InOutArgument x:TypeArguments="x:Boolean" x:Key="bWining">
-                              <mva:VisualBasicReference x:TypeArguments="x:Boolean" ExpressionText="bWining" />
-                            </InOutArgument>
-                            <InOutArgument x:TypeArguments="x:Boolean" x:Key="bBetUp">
-                              <mva:VisualBasicReference x:TypeArguments="x:Boolean" ExpressionText="bBetUp" />
-                            </InOutArgument>
-                            <InOutArgument x:TypeArguments="x:Double" x:Key="rCurBet">
-                              <mva:VisualBasicReference x:TypeArguments="x:Double" ExpressionText="rCurBet" />
-                            </InOutArgument>
-                            <InOutArgument x:TypeArguments="x:Double" x:Key="rCur">
-                              <mva:VisualBasicReference x:TypeArguments="x:Double" ExpressionText="rCur" />
-                            </InOutArgument>
-                            <InArgument x:TypeArguments="x:Double" x:Key="rBetAmount1">
-                              <mva:VisualBasicValue x:TypeArguments="x:Double" ExpressionText="rBetAmount1" />
-                            </InArgument>
-                            <InOutArgument x:TypeArguments="x:Double" x:Key="rQuitAmount">
-                              <mva:VisualBasicReference x:TypeArguments="x:Double" ExpressionText="rQuitAmount" />
-                            </InOutArgument>
-                            <InArgument x:TypeArguments="x:Double" x:Key="rConvertAmount">
-                              <mva:VisualBasicValue x:TypeArguments="x:Double" ExpressionText="rConvertAmount" />
-                            </InArgument>
-                            <InArgument x:TypeArguments="x:Int32" x:Key="nRelaxCount">
-                              <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="nRelaxCount" />
-                            </InArgument>
-                            <InArgument x:TypeArguments="x:Double" x:Key="rBetAmount2">
-                              <mva:VisualBasicValue x:TypeArguments="x:Double" ExpressionText="rBetAmount2" />
-                            </InArgument>
-                            <InOutArgument x:TypeArguments="x:Double" x:Key="rBetAmount">
-                              <mva:VisualBasicReference x:TypeArguments="x:Double" ExpressionText="rBetAmount" />
-                            </InOutArgument>
-                            <InOutArgument x:TypeArguments="x:String" x:Key="strBetAmount">
-                              <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="strBetAmount" />
-                            </InOutArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="strBetAmount1">
-                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strBetAmount1" />
-                            </InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="strBetAmount2">
-                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strBetAmount2" />
-                            </InArgument>
-                            <InOutArgument x:TypeArguments="x:Int32" x:Key="nRelaxRemain">
-                              <mva:VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="nRelaxRemain" />
-                            </InOutArgument>
-                            <InArgument x:TypeArguments="x:Int32" x:Key="nLoseReset">
-                              <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="nLoseReset" />
-                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="strResultColor">[strResultColor]</InArgument>
+                            <InOutArgument x:TypeArguments="x:Boolean" x:Key="bWin">[bWin]</InOutArgument>
+                            <InOutArgument x:TypeArguments="x:Boolean" x:Key="bWining">[bWining]</InOutArgument>
+                            <InOutArgument x:TypeArguments="x:Boolean" x:Key="bBetUp">[bBetUp]</InOutArgument>
+                            <InOutArgument x:TypeArguments="x:Double" x:Key="rCurBet">[rCurBet]</InOutArgument>
+                            <InOutArgument x:TypeArguments="x:Double" x:Key="rCur">[rCur]</InOutArgument>
+                            <InArgument x:TypeArguments="x:Double" x:Key="rBetAmount1">[rBetAmount1]</InArgument>
+                            <InOutArgument x:TypeArguments="x:Double" x:Key="rQuitAmount">[rQuitAmount]</InOutArgument>
+                            <InArgument x:TypeArguments="x:Double" x:Key="rConvertAmount">[rConvertAmount]</InArgument>
+                            <InArgument x:TypeArguments="x:Int32" x:Key="nRelaxCount">[nRelaxCount]</InArgument>
+                            <InArgument x:TypeArguments="x:Double" x:Key="rBetAmount2">[rBetAmount2]</InArgument>
+                            <InOutArgument x:TypeArguments="x:Double" x:Key="rBetAmount">[rBetAmount]</InOutArgument>
+                            <InOutArgument x:TypeArguments="x:String" x:Key="strBetAmount">[strBetAmount]</InOutArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="strBetAmount1">[strBetAmount1]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="strBetAmount2">[strBetAmount2]</InArgument>
+                            <InOutArgument x:TypeArguments="x:Int32" x:Key="nRelaxRemain">[nRelaxRemain]</InOutArgument>
+                            <InArgument x:TypeArguments="x:Int32" x:Key="nLoseReset">[nLoseReset]</InArgument>
+                            <InArgument x:TypeArguments="x:Int32" x:Key="nInspectCount">[nInspectCount]</InArgument>
+                            <InArgument x:TypeArguments="x:Int32" x:Key="nGiveUpDoubleCount">[nGiveUpDoubleCount]</InArgument>
+                            <InOutArgument x:TypeArguments="scg:List(x:Boolean)" x:Key="listWinLog">[listWinLog]</InOutArgument>
                           </ui:InvokeCode.Arguments>
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
